@@ -94,6 +94,7 @@ o.function(2)     // 4
 console.log(o)    // { objNumber: [Number: 1], number: 2, ... , d: [Circular], [Symbol()]: 111 }
 console.log(o.d)  // { objNumber: [Number: 1], number: 2, ... , d: [Circular], [Symbol()]: 111 }
 console.log(obj)  // { objNumber: [Number: 1], number: 2, ... , d: [Circular], [Symbol()]: 111 }
+console.log(Object.getOwnPropertyDescriptor(newObj, 'number')) // { writable: false, enumerable: true, configurable: false, value: 2 }
 
 console.log(deepClone(null))      // null
 console.log(deepClone(undefined)) // undefined

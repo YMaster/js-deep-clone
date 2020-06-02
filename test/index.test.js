@@ -98,6 +98,10 @@ test('test BigNumber', () => {
   expect(newObj.bigUintArray).not.toBe(obj.bigUintArray)
 })
 
+test('test defineProperty', () => {
+  expect(Object.getOwnPropertyDescriptor(newObj, 'number').writable).toBeFalsy()
+})
+
 test('test base DataType', () => {
   expect(deepClone(null)).toBeNull()
   expect(deepClone(void 0)).toBeUndefined()
