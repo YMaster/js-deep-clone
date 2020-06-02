@@ -1,0 +1,21 @@
+# IDE
+.vs
+.vscode
+.idea
+
+# dir
+node_modules
+amd
+cjs
+commonjs
+es
+lib
+system
+umd
+dist
+
+
+# file
+yarn.*
+package-lock.json
+yarn-error.log

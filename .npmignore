@@ -1,0 +1,17 @@
+# 隐藏文件
+.git
+.vscode
+.vs
+
+# dir
+node_modules
+
+# lock
+yarn.lock
+package-lock.json
+
+# error
+yarn-error.log
+
+# markdown
+publish.md

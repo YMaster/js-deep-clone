@@ -1,0 +1,95 @@
+{
+  "name": "@iusername/js-deep-clone",
+  "version": "1.0.0",
+  "description": "js数据深拷贝函数",
+  "main": "lib",
+  "module": "es",
+  "esnext": "es",
+  "private": false,
+  "types": "lib/index.d.ts",
+  "homepage": "https://github.com/YMaster/js-deep-clone.git#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YMaster/js-deep-clone.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "prebuild": "rimraf lib & rimraf es & rimraf commonjs & rimraf amd & rimraf system",
+    "build": "rollup -c",
+    "prepublish": "npm run build & npm run test",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0",
+    "cz": "git-cz"
+  },
+  "lint-staged": {
+    "**/*.ts?(x)": [
+      "eslint --fix",
+      "git add --force"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "browserslist": [
+    "> 5%"
+  ],
+  "keywords": [
+    "deepClone",
+    "deep",
+    "clone",
+    "拷贝",
+    "深拷贝",
+    "深度拷贝"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "author": "YM",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.10.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/helpers": "^7.10.1",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-typescript": "^7.10.1",
+    "@babel/runtime": "^7.10.2",
+    "@babel/types": "^7.10.2",
+    "@commitlint/config-angular": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@rollup/plugin-babel": "^5.0.2",
+    "@rollup/plugin-node-resolve": "^8.0.0",
+    "@types/jest": "^25.2.3",
+    "@types/webpack": "^4.41.17",
+    "@typescript-eslint/eslint-plugin": "^3.0.2",
+    "@typescript-eslint/parser": "^3.0.2",
+    "commitizen": "^4.1.2",
+    "commitlint": "^8.3.5",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^7.1.0",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "lint-staged": "^10.2.7",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.12.0",
+    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.3"
+  },
+  "bugs": {
+    "url": "https://github.com/YMaster/percentile/issues"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  }
+}
