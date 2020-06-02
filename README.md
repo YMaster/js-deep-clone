@@ -7,7 +7,7 @@
 请不要使用 0.1.4 之前的版本，不支持 TypeScript 的类型判断
 
 ## 支持类型
-- 基础类型：null、undefined、String、Number、Symbol（基本类型的值具有唯一性，都是直接赋值）
+- 基础类型：null、undefined、String、Number、Symbol、BigInt（基本类型的值具有唯一性，都是直接赋值）
 - Object (Object、ObjectString、ObjectNumber)
 - Date
 - RegExp

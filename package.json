@@ -5,7 +5,7 @@
   "main": "lib",
   "module": "es",
   "esnext": "es",
-  "private": false,
+  "private": true,
   "types": "lib/index.d.ts",
   "homepage": "https://github.com/YMaster/js-deep-clone.git#readme",
   "repository": {
@@ -39,6 +39,9 @@
     "deepClone",
     "deep",
     "clone",
+    "deep-clone",
+    "js-deep-clone",
+    "deepclone",
     "拷贝",
     "深拷贝",
     "深度拷贝"
