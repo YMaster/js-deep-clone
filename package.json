@@ -17,7 +17,7 @@
     "prebuild": "rimraf lib & rimraf es & rimraf commonjs & rimraf amd & rimraf system",
     "build": "rollup -c",
     "prepublish": "npm run build & npm run test",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "cz": "git-cz"
   },
   "lint-staged": {
