@@ -9,6 +9,8 @@
 ## 支持类型
 - 基础类型：null、undefined、String、Number、Symbol、BigInt（基本类型的值具有唯一性，都是直接赋值）
 - Object (Object、ObjectString、ObjectNumber)
+- Set
+- Map
 - Date
 - RegExp
 - Function（尚不支持原型链复制）
@@ -37,6 +39,8 @@ const obj = {
   objRegexp: new RegExp('\\w'),
   regexp: /w+/g,
   date: new Date(),
+  set: new Set(),
+  map: new Map(),
   function: function (value) {
     return this.number + value
   },
@@ -75,6 +79,8 @@ console.log('sym: ', o.sym === obj.sym);                      // sym:  true
 console.log('objRegexp: ', o.objRegexp === obj.objRegexp);    // objRegexp:  false
 console.log('regexp: ', o.regexp === obj.regexp);             // regexp:  false
 console.log('date: ', o.date === obj.date);                   // date:  false
+console.log('set: ', o.set === obj.set);                      // set:  false
+console.log('map: ', o.map === obj.map);                      // map:  false
 console.log('function: ', o.function === obj.function);       // function:  false
 console.log('int8Array: ', o.int8Array === obj.int8Array);    // int8Array:  false
 console.log('int16Array: ', o.int16Array === obj.int16Array); // int16Array:  false
@@ -83,12 +89,12 @@ console.log('uint8Array: ', o.uint8Array === obj.uint8Array);    // uint8Array: 
 console.log('uint16Array: ', o.uint16Array === obj.uint16Array); // uint16Array:  false
 console.log('uint32Array: ', o.uint32Array === obj.uint32Array); // uint32Array:  false
 console.log('uint8ClampedArray: ', o.uint8ClampedArray === obj.uint8ClampedArray); // uint32Array:  false
-console.log('dataView: ', o.dataView === obj.dataView); // dataView:  false
-console.log('arrBuffer: ', o.arrBuffer === obj.arrBuffer);    // arrBuffer:  false
-console.log('array: ', o.array === obj.array);                // array:  false
+console.log('dataView: ', o.dataView === obj.dataView);         // dataView:  false
+console.log('arrBuffer: ', o.arrBuffer === obj.arrBuffer);      // arrBuffer:  false
+console.log('array: ', o.array === obj.array);                  // array:  false
 console.log('array item: ', o.array[0] === obj.array[0], o.array[1] === obj.array[1]);  // array items:  false true
 console.log('symbolName: ', o[symbolName] === obj[symbolName]);   // symbolName:  false
-console.log('d: ', o.d === o, o.d === obj.d)    // d:  true false
+console.log('d: ', o.d === o, o.d === obj.d)                       // d:  true false
 obj.function(2)   // 4
 o.function(2)     // 4
 console.log(o)    // { objNumber: [Number: 1], number: 2, ... , d: [Circular], [Symbol()]: 111 }

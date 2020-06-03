@@ -10,6 +10,8 @@ const obj = {
   objRegexp: new RegExp('\\w'),
   regexp: /w+/g,
   date: new Date(),
+  set: new Set(),
+  map: new Map(),
   function: function (value) {
     return this.number + value
   },
@@ -82,6 +84,30 @@ test('test dataView', () => {
   expect(obj.dataView.getInt8(0)).not.toBe(2)
 })
 
+test('test BigNumber', () => {
+  expect(newObj.bigInt).toBe(obj.bigInt)
+  expect(newObj.bigIntArray).not.toBe(obj.bigIntArray)
+  expect(newObj.bigUintArray).not.toBe(obj.bigUintArray)
+})
+
+test('test Set', () => {
+  expect(newObj.set).not.toBe(obj.set)
+
+  obj.set.add(1)
+  expect(newObj.set.has(1)).toBeFalsy()
+})
+
+test('test Map', () => {
+  expect(newObj.map).not.toBe(obj.map)
+
+  obj.map.set('a', 'abc')
+  expect(newObj.map.get('a')).not.toBe('abc')
+})
+
+test('test defineProperty', () => {
+  expect(Object.getOwnPropertyDescriptor(newObj, 'number').writable).toBeFalsy()
+})
+
 test('test others', () => {
   // expect(newObj.blob).not.toBe(obj.blob)
   expect(newObj.array[0]).toStrictEqual(obj.array[0])
@@ -90,16 +116,6 @@ test('test others', () => {
   expect(newObj.function).not.toBe(obj.function)
   expect(newObj.arrBuffer).not.toBe(obj.arrBuffer)
   expect(newObj.array).not.toBe(obj.array)
-})
-
-test('test BigNumber', () => {
-  expect(newObj.bigInt).toBe(obj.bigInt)
-  expect(newObj.bigIntArray).not.toBe(obj.bigIntArray)
-  expect(newObj.bigUintArray).not.toBe(obj.bigUintArray)
-})
-
-test('test defineProperty', () => {
-  expect(Object.getOwnPropertyDescriptor(newObj, 'number').writable).toBeFalsy()
 })
 
 test('test base DataType', () => {

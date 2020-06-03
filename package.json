@@ -1,11 +1,11 @@
 {
   "name": "@iusername/js-deep-clone",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "js数据深拷贝函数",
   "main": "lib",
   "module": "es",
   "esnext": "es",
-  "private": true,
+  "private": false,
   "types": "lib/index.d.ts",
   "homepage": "https://github.com/YMaster/js-deep-clone.git#readme",
   "repository": {
@@ -17,7 +17,11 @@
     "prebuild": "rimraf lib & rimraf es & rimraf commonjs & rimraf amd & rimraf system",
     "build": "rollup -c",
     "prepublish": "npm run build & npm run test",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "release": "standard-version",
+    "release:first": "standard-version --first-release",
+    "release:alpha": "standard-version --prerelease alpha",
+    "release:minor": "standard-version  --release-as minor",
+    "release:noverify": "standard-version --no-verify",
     "cz": "git-cz"
   },
   "lint-staged": {
@@ -85,6 +89,7 @@
     "rollup": "^2.12.0",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript2": "^0.27.1",
+    "standard-version": "^8.0.0",
     "tslib": "^2.0.0",
     "typescript": "^3.9.3"
   },

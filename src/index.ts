@@ -8,6 +8,8 @@ type likeType = ArrayBuffer | Blob | Int8Array | Int16Array | Int32Array | Uint8
 // 判断
 const isObjectString = (obj: any) => getNativeType(obj) === '[object String]' && typeof obj === 'object' && obj.charAt
 const isObjectNumber = (obj: any) => getNativeType(obj) === '[object Number]' && typeof obj === 'object'
+const isMap = (obj: any): boolean => getNativeType(obj) === '[object Map]'
+const isSet = (obj: any): boolean => getNativeType(obj) === '[object Set]'
 const isObject = (obj: any): boolean => getNativeType(obj) === '[object Object]'
 const isFunction = (obj: any): boolean => getNativeType(obj) === '[object Function]'
 const isRegExp = (obj: any): boolean => getNativeType(obj) === '[object RegExp]'
@@ -20,6 +22,8 @@ const isBufferOrBlobOr_Big__Int__Uint__Clamped_Array = (obj: any): boolean => /^
 const copyObjectString = (strObj: any): String => new String(strObj)
 const copyObjectNumber = (numObj: any): Number => new Number(numObj)
 const copyDate = (date: any): Date => new Date(date)
+const copySet = (set: any): Set<any> => new Set(set)
+const copyMap = (map: any): Map<any, any> => new Map(map)
 const copyReg = (reg: any): RegExp => new RegExp(reg)
 const copyFunction = (fn: any): Function => new Function('return ' + fn.toString())()
 const copyDataView = (view: any): DataView => new DataView(view.buffer.slice(0), view.byteOffset, view.byteLength)
@@ -73,6 +77,10 @@ const deepCopy = <T extends any>(obj: T, target?: any, key?: any): T => {
       catchItem.copy = copyObjectString(obj)
     } else if (isObjectNumber(obj)) {
       catchItem.copy = copyObjectNumber(obj)
+    } else if (isSet(obj)) {
+      catchItem.copy = copySet(obj)
+    } else if (isMap(obj)) {
+      catchItem.copy = copyMap(obj)
     } else if (isFunction(obj)) {
       catchItem.copy = copyFunction(obj)
     } else if (isObject(obj)) {

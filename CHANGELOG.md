@@ -2,28 +2,6 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## 1.2.0 (2020-06-03)
-
-
-### ⚠ BREAKING CHANGES
-
-* **add:** 1.修复了readme中用例中部分错误；2.新增了一批复制对象；3.添加jest作为单元测试以及添加eslint；4.更改了源码入口文件位置与文件名；5.更加合理的打包，使用rollup打包terser进行压缩。
-
-### Features
-
-* **add:** 新增若干复制对象 ([022f1fa](https://github.com/YMaster/js-deep-clone/commit/022f1fa096e6efaf535d8727bfc4d75d4cccfad9))
-
-## 1.2.0 (2020-06-03)
-
-
-### ⚠ BREAKING CHANGES
-
-* **add:** 1.修复了readme中用例中部分错误；2.新增了一批复制对象；3.添加jest作为单元测试以及添加eslint；4.更改了源码入口文件位置与文件名；5.更加合理的打包，使用rollup打包terser进行压缩。
-
-### Features
-
-* **add:** 添加可复制对象 ([bd1114d](https://github.com/YMaster/js-deep-clone/commit/bd1114d5a4cca7515b1ea398c0c96ec35608e52a))
-* **add:** 新增若干复制对象 ([022f1fa](https://github.com/YMaster/js-deep-clone/commit/022f1fa096e6efaf535d8727bfc4d75d4cccfad9))
 
 # 1.1.0 (2020-06-03)
 
