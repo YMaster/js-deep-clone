@@ -1,14 +1,16 @@
 # deepClone
 
 ## 介绍
-<strong>deepClone 是一个 javascript 深拷贝函数</strong>
+<strong>js-deep-clone 是一个 javascript 深拷贝函数</strong>
+
+支持绝大多数 javascript 数据类型的数据的深度复制，如果有您想要支持但尚未支持的类型，或是现有支持的类型存在问题，欢迎您提一个[Issues](https://github.com/YMaster/js-deep-clone/issues)
 
 ## 注意
-请不要使用 0.1.4 之前的版本，不支持 TypeScript 的类型判断
+- 建议使用最新版本，从 0.1.4 版本开始 TypeScript 的类型判断
 
 ## 支持类型
 - 基础类型：null、undefined、String、Number、Symbol、BigInt（基本类型的值具有唯一性，都是直接赋值）
-- Object (Object、ObjectString、ObjectNumber)
+- Object (包含 js对象、数字对象：Number(1)、字符串对象：String('string'))
 - Set
 - Map
 - Date
@@ -21,13 +23,19 @@
 - Int8Array、Int16Array、Int32Array
 - Uint8Array、Uint16Array、Uint32Array
 - Uint8ClampedArray
+- 支持对象上的循环引用（看下面《使用》中的 obj.d）
 
 
 ## 使用
+```bash
+# npm
+npm i @iusername/js-deep-clone
+
+# yarn
+yarn add @iusername/js-deep-clone
+```
 ```javascript
 import deepClone from 'deepClone';
-
-
 
 const symbolName = Symbol();
 const arrbuf = new ArrayBuffer(12)
