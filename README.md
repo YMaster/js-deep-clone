@@ -9,8 +9,8 @@
 - 建议使用最新版本，从 0.1.4 版本开始 TypeScript 的类型判断
 
 ## 支持类型
-- 基础类型：null、undefined、String、Number、Symbol、BigInt（基本类型的值具有唯一性，都是直接赋值）
-- Object (包含 js对象、数字对象：Number(1)、字符串对象：String('string'))
+- 基础类型：null、undefined、String、Number、Symbol、Boolean、BigInt（基本类型的值具有唯一性，都是直接赋值）
+- Object (包含 js对象、数字对象：Number(1)、字符串对象：String('string')、布尔对象:new Boolean(false))
 - Set
 - Map
 - Date
@@ -23,7 +23,10 @@
 - Int8Array、Int16Array、Int32Array
 - Uint8Array、Uint16Array、Uint32Array
 - Uint8ClampedArray
+- Float32Array、Float64Array
 - 支持对象上的循环引用（看下面《使用》中的 obj.d）
+
+PS: WeakSet 和 WeakMap 由于其内部数据的不计数引用这一特殊性无法复制内部数据，也就不具有复制的能力
 
 
 ## 使用
@@ -125,6 +128,7 @@ console.log(date, '<-->', cloneDate, date == cloneDate, date === cloneDate)    /
 
 ## TODO
 - Function 原型链复制
+- Proxy 目前没有看到有需要copy代理对象的场景，如果有的话欢迎提 Issues，我会尝试能否处理
 
 ## LICENSE
 [MIT](https://opensource.org/licenses/MIT)

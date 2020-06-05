@@ -5,9 +5,27 @@ type ICatchItem = { original: any, copy: any }
 type ICircleLink = { target: any, key: any, catchItem: ICatchItem }
 type likeType = ArrayBuffer | Blob | Int8Array | Int16Array | Int32Array | Uint8Array | Uint16Array | Uint32Array | BigInt64Array | BigUint64Array
 
+/*
+const getStringTag = (type: string) => `[object ${type}]`
+const objectTypes = {
+  string: getStringTag('String'),
+  number: getStringTag('Number'),
+  map: getStringTag('Map'),
+  set: getStringTag('Set'),
+  object: getStringTag('Object'),
+  function: getStringTag('Function]'),
+  reg: getStringTag('RegExp'),
+  date: getStringTag('Date'),
+  dataView: getStringTag('DataView'),
+  array: getStringTag('Array'),
+  blob: getStringTag('Blob'),
+}
+*/
+
 // 判断
 const isObjectString = (obj: any) => getNativeType(obj) === '[object String]' && typeof obj === 'object' && obj.charAt
 const isObjectNumber = (obj: any) => getNativeType(obj) === '[object Number]' && typeof obj === 'object'
+const isObjectBoolean = (obj: any) => getNativeType(obj) === '[object Boolean]' && typeof obj === 'object'
 const isMap = (obj: any): boolean => getNativeType(obj) === '[object Map]'
 const isSet = (obj: any): boolean => getNativeType(obj) === '[object Set]'
 const isObject = (obj: any): boolean => getNativeType(obj) === '[object Object]'
@@ -16,18 +34,19 @@ const isRegExp = (obj: any): boolean => getNativeType(obj) === '[object RegExp]'
 const isDate = (obj: any): boolean => getNativeType(obj) === '[object Date]'
 const isDataView = (obj: any): boolean => getNativeType(obj) === '[object DataView]'
 const isArray = (obj: any): boolean => Array.isArray(obj)
-const isBufferOrBlobOr_Big__Int__Uint__Clamped_Array = (obj: any): boolean => /^\[object (((Big)?(Int|Uint)\d+)?(Clamped)?Array(Buffer)?|Blob)\]$/.test(getNativeType(obj))
+const isBufferOrBlobOr_Big__Int__Uint__Float__Clamped_Array = (obj: any): boolean => /^\[object (((Big)?(Int|Uint|Float)\d+)?(Clamped|Shared)?Array(Buffer)?|Blob)\]$/.test(getNativeType(obj))
 
 // 复制
 const copyObjectString = (strObj: any): String => new String(strObj)
 const copyObjectNumber = (numObj: any): Number => new Number(numObj)
+const copyObjectBoolean = (boolObj: any): Boolean => new Boolean(boolObj.toString() === 'true')
 const copyDate = (date: any): Date => new Date(date)
 const copySet = (set: any): Set<any> => new Set(set)
 const copyMap = (map: any): Map<any, any> => new Map(map)
 const copyReg = (reg: any): RegExp => new RegExp(reg)
 const copyFunction = (fn: any): Function => new Function('return ' + fn.toString())()
 const copyDataView = (view: any): DataView => new DataView(view.buffer.slice(0), view.byteOffset, view.byteLength)
-const copyBufferOrBlobOr_Big__Int__Uint__Clamped_Array = (arrLike: likeType & any) => arrLike.slice(0)
+const copyBufferOrBlobOr_Big__Int__Uint__Float__Clamped_Array = (arrLike: likeType & any) => arrLike.slice(0)
 const deepCopyArray = (arr: any): any[] => {
   const newArr: any[] = []
   arr.forEach((item: any, index: number) => {
@@ -77,6 +96,8 @@ const deepCopy = <T extends any>(obj: T, target?: any, key?: any): T => {
       catchItem.copy = copyObjectString(obj)
     } else if (isObjectNumber(obj)) {
       catchItem.copy = copyObjectNumber(obj)
+    } else if (isObjectBoolean(obj)) {
+      catchItem.copy = copyObjectBoolean(obj)
     } else if (isSet(obj)) {
       catchItem.copy = copySet(obj)
     } else if (isMap(obj)) {
@@ -93,8 +114,8 @@ const deepCopy = <T extends any>(obj: T, target?: any, key?: any): T => {
       catchItem.copy = copyDate(obj)
     } else if (isDataView(obj)) {
       catchItem.copy = copyDataView(obj)
-    } else if (isBufferOrBlobOr_Big__Int__Uint__Clamped_Array(obj)) {
-      catchItem.copy = copyBufferOrBlobOr_Big__Int__Uint__Clamped_Array(obj)
+    } else if (isBufferOrBlobOr_Big__Int__Uint__Float__Clamped_Array(obj)) {
+      catchItem.copy = copyBufferOrBlobOr_Big__Int__Uint__Float__Clamped_Array(obj)
     } else {
       catchItem.copy = obj
     }

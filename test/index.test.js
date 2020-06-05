@@ -1,4 +1,4 @@
-import deepClone from '../lib'
+import deepClone from '../src/index.ts'
 
 const symbolName = Symbol()
 const arrbuf = new ArrayBuffer(12)
@@ -8,6 +8,8 @@ const obj = {
   objString: new String('ss'),
   string: 'stirng',
   objRegexp: new RegExp('\\w'),
+  bool: false,
+  objBoolean: new Boolean(false),
   regexp: /w+/g,
   date: new Date(),
   set: new Set(),
@@ -25,9 +27,12 @@ const obj = {
   arrBuffer: new ArrayBuffer(10),
   dataView: new DataView(arrbuf.slice(), 0, 8),
   uint8ClampedArray: new Uint8ClampedArray(10),
+  float32Array: new Float32Array(10),
+  float64Array: new Float64Array(10),
   bigInt: 12n,
   bigIntArray: new BigInt64Array(12),
   bigUintArray: new BigUint64Array(12),
+  sharedArrayBuffer: new SharedArrayBuffer(1024),
   array: [{ a: 1 }, 2],
   [symbolName]: 111,
   sym: symbolName
@@ -45,6 +50,7 @@ const newObj = deepClone(obj)
 test('test base protperties', () => {
   expect(newObj.number).toBe(obj.number)
   expect(newObj.string).toBe(obj.string)
+  expect(newObj.bool).toBe(obj.bool)
   expect(newObj.sym).toBe(obj.sym)
   expect(newObj[symbolName]).toBe(obj[symbolName])
 })
@@ -59,6 +65,7 @@ test('test Circular reference', () => {
 test('test ObjectBaseData', () => {
   expect(newObj.objNumber).not.toBe(obj.objNumber)
   expect(newObj.objString).not.toBe(obj.objString)
+  expect(newObj.objBoolean).not.toBe(obj.objBoolean)
   expect(newObj.objRegexp).not.toBe(obj.objRegexp)
 })
 
@@ -108,13 +115,22 @@ test('test defineProperty', () => {
   expect(Object.getOwnPropertyDescriptor(newObj, 'number').writable).toBeFalsy()
 })
 
+test('test floatArray', () => {
+  expect(newObj.float32Array).not.toBe(obj.float32Array)
+  expect(newObj.float64Array).not.toBe(obj.float64Array)
+})
+
+test('test arrayBuffer', () => {
+  expect(newObj.arrBuffer).not.toBe(obj.arrBuffer)
+  expect(newObj.sharedArrayBuffer).not.toBe(obj.sharedArrayBuffer)
+})
+
 test('test others', () => {
   // expect(newObj.blob).not.toBe(obj.blob)
   expect(newObj.array[0]).toStrictEqual(obj.array[0])
   expect(obj.function(2)).toBe(obj.function(2))
   expect(newObj.date).not.toBe(obj.date)
   expect(newObj.function).not.toBe(obj.function)
-  expect(newObj.arrBuffer).not.toBe(obj.arrBuffer)
   expect(newObj.array).not.toBe(obj.array)
 })
 
