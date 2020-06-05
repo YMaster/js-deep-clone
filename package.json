@@ -22,6 +22,7 @@
     "release:alpha": "standard-version --prerelease alpha",
     "release:minor": "standard-version  --release-as minor",
     "release:noverify": "standard-version --no-verify",
+    "release:publish": "git push --follow-tags origin master && npm publish",
     "cz": "git-cz"
   },
   "lint-staged": {
