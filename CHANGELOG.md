@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/YMaster/js-deep-clone/compare/v1.2.0...v1.3.0) (2020-06-05)
+
+
+### Features
+
+* **add:** float32Array、Float64Array、new Boolean() ([1a0f98f](https://github.com/YMaster/js-deep-clone/commit/1a0f98f346473112a2e43bbf70a4e0ff19a74b2a))
+
 ## 1.2.0 (2020-06-03)
 
 
