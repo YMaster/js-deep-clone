@@ -69,22 +69,31 @@ test('test ObjectBaseData', () => {
   expect(newObj.objRegexp).not.toBe(obj.objRegexp)
 })
 
-test('test IntArray', () => {
+test('test TypeArray', () => {
   expect(newObj.int8Array).not.toBe(obj.int8Array)
   expect(newObj.int16Array).not.toBe(obj.int16Array)
   expect(newObj.int32Array).not.toBe(obj.int32Array)
-})
-
-test('test UintArray', () => {
   expect(newObj.uint8Array).not.toBe(obj.uint8Array)
   expect(newObj.uint16Array).not.toBe(obj.uint16Array)
   expect(newObj.uint32Array).not.toBe(obj.uint32Array)
+  expect(newObj.float32Array).not.toBe(obj.float32Array)
+  expect(newObj.float64Array).not.toBe(obj.float64Array)
   expect(newObj.uint8ClampedArray).not.toBe(obj.uint8ClampedArray)
+  expect(newObj.int8Array).toEqual(obj.int8Array)
+  expect(newObj.int16Array).toEqual(obj.int16Array)
+  expect(newObj.int32Array).toEqual(obj.int32Array)
+  expect(newObj.uint8Array).toEqual(obj.uint8Array)
+  expect(newObj.uint16Array).toEqual(obj.uint16Array)
+  expect(newObj.uint32Array).toEqual(obj.uint32Array)
+  expect(newObj.float32Array).toEqual(obj.float32Array)
+  expect(newObj.float64Array).toEqual(obj.float64Array)
+  expect(newObj.uint8ClampedArray).toEqual(obj.uint8ClampedArray)
 })
 
 test('test dataView', () => {
   expect(newObj.dataView).not.toBe(obj.dataView)
-  expect(newObj.dataView.buffer).not.toBe(obj.dataView)
+  expect(newObj.dataView.buffer).not.toBe(obj.dataView.buffer)
+  expect(newObj.dataView.buffer).toEqual(obj.dataView.buffer)
 
   newObj.dataView.setInt8(0, 2)
   expect(newObj.dataView.getInt8(0)).toBe(2)
@@ -113,11 +122,6 @@ test('test Map', () => {
 
 test('test defineProperty', () => {
   expect(Object.getOwnPropertyDescriptor(newObj, 'number').writable).toBeFalsy()
-})
-
-test('test floatArray', () => {
-  expect(newObj.float32Array).not.toBe(obj.float32Array)
-  expect(newObj.float64Array).not.toBe(obj.float64Array)
 })
 
 test('test arrayBuffer', () => {

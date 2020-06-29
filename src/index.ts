@@ -34,7 +34,11 @@ const isRegExp = (obj: any): boolean => getNativeType(obj) === '[object RegExp]'
 const isDate = (obj: any): boolean => getNativeType(obj) === '[object Date]'
 const isDataView = (obj: any): boolean => getNativeType(obj) === '[object DataView]'
 const isArray = (obj: any): boolean => Array.isArray(obj)
-const isBufferOrBlobOr_Big__Int__Uint__Float__Clamped_Array = (obj: any): boolean => /^\[object (((Big)?(Int|Uint|Float)\d+)?(Clamped|Shared)?Array(Buffer)?|Blob)\]$/.test(getNativeType(obj))
+/**
+ * 判断是否为 ArrayBuffer 以及 TypeArray 或 BigArray
+ * @param obj {any} 用于判断的数据
+ */
+const isBufferOrBlobOTypeArrayOrBigArray = (obj: any): boolean => /^\[object (((Big)?(Int|Uint|Float)\d+)?(Clamped|Shared)?Array(Buffer)?|Blob)\]$/.test(getNativeType(obj))
 
 // 复制
 const copyObjectString = (strObj: any): String => new String(strObj)
@@ -46,7 +50,7 @@ const copyMap = (map: any): Map<any, any> => new Map(map)
 const copyReg = (reg: any): RegExp => new RegExp(reg)
 const copyFunction = (fn: any): Function => new Function('return ' + fn.toString())()
 const copyDataView = (view: any): DataView => new DataView(view.buffer.slice(0), view.byteOffset, view.byteLength)
-const copyBufferOrBlobOr_Big__Int__Uint__Float__Clamped_Array = (arrLike: likeType & any) => arrLike.slice(0)
+const copyBufferOrBlobOTypeArrayOrBigArray = (arrLike: likeType & any) => arrLike.slice(0)
 const deepCopyArray = (arr: any): any[] => {
   const newArr: any[] = []
   arr.forEach((item: any, index: number) => {
@@ -114,8 +118,8 @@ const deepCopy = <T extends any>(obj: T, target?: any, key?: any): T => {
       catchItem.copy = copyDate(obj)
     } else if (isDataView(obj)) {
       catchItem.copy = copyDataView(obj)
-    } else if (isBufferOrBlobOr_Big__Int__Uint__Float__Clamped_Array(obj)) {
-      catchItem.copy = copyBufferOrBlobOr_Big__Int__Uint__Float__Clamped_Array(obj)
+    } else if (isBufferOrBlobOTypeArrayOrBigArray(obj)) {
+      catchItem.copy = copyBufferOrBlobOTypeArrayOrBigArray(obj)
     } else {
       catchItem.copy = obj
     }

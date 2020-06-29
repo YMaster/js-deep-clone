@@ -11,28 +11,23 @@ export default {
     {
       format: 'umd',
       dir: 'lib',
-      sourcemap: true,
       name: pkg.name.replace(/^@[^\/]+\//, ''),
     },
     {
       format: 'es',
       dir: 'es',
-      sourcemap: true,
     },
     {
       format: 'system',
       dir: 'system',
-      sourcemap: true,
     },
     {
       format: 'cjs',
       dir: 'commonjs',
-      sourcemap: true,
     },
     {
       format: 'amd',
       dir: 'amd',
-      sourcemap: true,
     }
   ],
   plugins: [

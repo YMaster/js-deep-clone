@@ -1,30 +1,28 @@
 # deepClone
 
 ## 介绍
-<strong>js-deep-clone 是一个 javascript 深拷贝函数</strong>
+<strong>deepClone 是一个 javascript 深拷贝函数</strong>
 
-支持绝大多数 javascript 数据类型的数据的深度复制，如果有您想要支持但尚未支持的类型，或是现有支持的类型存在问题，欢迎您提一个[Issues](https://github.com/YMaster/js-deep-clone/issues)
+支持几乎常见以及绝大多数 javascript 数据类型的数据的深度复制，
+默认支持 ES6+ 环境，如果想要支持 ES3、ES5 的话需要在项目中添加 babel 和 pollfill。
 
-## 注意
-- 建议使用最新版本，从 0.1.4 版本开始 TypeScript 的类型判断
+如果有您想要支持但尚未支持的类型，或是现有支持的类型存在问题，欢迎您提一个[Issues](https://github.com/YMaster/js-deep-clone/issues)
+
 
 ## 支持类型
-- 基础类型：null、undefined、String、Number、Symbol、Boolean、BigInt（基本类型的值具有唯一性，都是直接赋值）
+- 基础类型：null、undefined、String、Number、Symbol、Boolean、BigInt、NaN
 - Object (包含 js对象、数字对象：Number(1)、字符串对象：String('string')、布尔对象:new Boolean(false))
-- Set
-- Map
+- Function（尚不支持原型链复制）
+- Array
 - Date
 - RegExp
-- Function（尚不支持原型链复制）
 - Blob（blob属于数据类型，不属于 js 类型，node 中运行的话没法直接 new Blob(), 但浏览器中可以，注意运行环境）
-- Array
+- Set
+- Map
 - ArrayBuffer、DataView
-- BigInt64Array、BigUint64Array
-- Int8Array、Int16Array、Int32Array
-- Uint8Array、Uint16Array、Uint32Array
-- Uint8ClampedArray
-- Float32Array、Float64Array
-- 支持对象上的循环引用（看下面《使用》中的 obj.d）
+- TypeArray(Int8Array、Int16Array、Int32Array、Uint8Array、Uint16Array、Uint32Array、Float32Array、Float64Array、Uint8ClampedArray)
+- BigArray(BigInt64Array、BigUint64Array)
+- 支持对象的循环引用（看下面[示例](#示例)中的 obj.d）
 
 PS: WeakSet 和 WeakMap 由于其内部数据的不计数引用这一特殊性无法复制内部数据，也就不具有复制的能力
 
@@ -37,6 +35,14 @@ npm i @iusername/js-deep-clone
 # yarn
 yarn add @iusername/js-deep-clone
 ```
+```javascript
+import deepClone from 'deepClone';
+
+const source = {}
+const target = deepClone(source)
+```
+
+## 示例
 ```javascript
 import deepClone from 'deepClone';
 
@@ -123,12 +129,12 @@ console.log(deepClone(/abc/))       // /abc/
 
 const date = new Date()
 const cloneDate = deepClone(date)
-console.log(date, '<-->', cloneDate, date == cloneDate, date === cloneDate)    // 2020-05-09T05:42:54.818Z <--> 2020-05-09T05:42:54.818Z false false
+console.log(date, cloneDate, date == cloneDate, date === cloneDate)    // 2020-05-09T05:42:54.818Z 2020-05-09T05:42:54.818Z false false
 ```
 
 ## TODO
 - Function 原型链复制
-- Proxy 目前没有看到有需要copy代理对象的场景，如果有的话欢迎提 Issues，我会尝试能否处理
+- Proxy 对象（暂且不作为必须功能看待）
 
 ## LICENSE
 [MIT](https://opensource.org/licenses/MIT)
