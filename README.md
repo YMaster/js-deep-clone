@@ -4,7 +4,7 @@
 <strong>deepClone 是一个 javascript 深拷贝函数</strong>
 
 支持几乎常见以及绝大多数 javascript 数据类型的数据的深度复制，
-默认支持 ES6+ 环境，如果想要支持 ES3、ES5 的话需要在项目中添加 babel 和 pollfill。
+默认支持 ES6+ 环境，如果想要支持 ES3、ES5 的话需要在项目中添加 pollfill。
 
 如果有您想要支持但尚未支持的类型，或是现有支持的类型存在问题，欢迎您提一个[Issues](https://github.com/YMaster/js-deep-clone/issues)
 
@@ -133,7 +133,7 @@ console.log(date, cloneDate, date == cloneDate, date === cloneDate)    // 2020-0
 ```
 
 ## TODO
-- Function 原型链复制
+- <del>Function 原型链复制</del>
 - Proxy 对象（暂且不作为必须功能看待）
 
 ## LICENSE

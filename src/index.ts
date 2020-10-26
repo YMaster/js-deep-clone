@@ -80,7 +80,7 @@ const deepCopyObject = (obj: any) => {
 // core
 let cacheList: ICatchItem[] = []
 let circleLinks: ICircleLink[] = []
-const deepCopy = <T extends any>(obj: T, target?: any, key?: any): T => {
+const deepCopy = <T = any>(obj: T, target?: any, key?: any): T => {
   let catchItem: ICatchItem = {
     original: obj,
     copy: void 0
